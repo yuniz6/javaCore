@@ -1,15 +1,14 @@
 package Lesson1;
 
-
 public interface Participant {
+        String getName();
 
-    String getName();
+        boolean isOnDistance();
 
-    boolean isOnDistance();
+        void run(int distance);
 
-    void run(int distance);
+        void jump(int height);
 
-    void jump(int height);
+        void swim(int distance);
+    }
 
-    void swim(int distance);
-}

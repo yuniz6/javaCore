@@ -1,37 +1,53 @@
 package Lesson1;
 
-import Lesson1.Obstacle.Obstacle;
+import Lesson1.animals.Animal;
+import Lesson1.animals.Cat;
+import Lesson1.animals.Dog;
+import Lesson1.obstacles.Obstacle;
 
 public class Team {
-
-    private String name;
-    private Person[] person;
+    private String name;// название команды
+    private Participant participants[] ;    // участники
 
     public Team(String name) {
         this.name = name;
     }
 
-    public Team(String name, Person[] person) {
+    public Team(String name,Participant ... participantsGiven ) {
         this.name = name;
-        this.person = person;
+        this.participants = participantsGiven;
     }
 
-    public String getName() {
-        return "Имя команды: " + teamName;
-    }
-
-    public void showResults() {
-        for (Person c : person) {
-            c.showResult();
+    public void getTeamInfo() {
+        System.out.println("Команда: " + this.name );
+        for (Participant participant : participants) {
+            if (participant instanceof Dog) {
+                System.out.println("Собака " + participant.getName());
+            }
+            if (participant instanceof Cat) {
+                System.out.println("Кот " + participant.getName());
+            }
+            if (participant instanceof Robot) {
+                System.out.println("Робот " + participant.getName());
+            }
         }
     }
 
-    public void doIt(Obstacle obstacle){
-        for (Person person : person) {
-            obstacle.doIt(person);
-            if (!person.isOnDistance()) {
+    public void showResults(){
+        for (Participant participant : participants) {
+            //obstacle.doIt(participant);
+            if (!participant.isOnDistance()) {
                 break;
             }
         }
     }
+    public void doIt(Obstacle obstacle){
+        for (Participant participant : participants) {
+            obstacle.doIt(participant);
+            /*if (!participant.isOnDistance()) {
+                break;
+            }*/
+        }
+    }
+
 }
