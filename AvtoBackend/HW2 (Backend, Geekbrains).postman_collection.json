@@ -1,0 +1,2582 @@
+{
+	"info": {
+		"_postman_id": "bf997197-48a8-424a-bef1-870dc8afac7e",
+		"name": "HW2 (Backend, Geekbrains)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20328997"
+	},
+	"item": [
+		{
+			"name": "Search Recipes (GET)",
+			"item": [
+				{
+					"name": "1. minProtein",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?minProtein=43",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "43"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. cuisine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?cuisine=british",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "43",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "british",
+									"description": "The cuisine(s) of the recipes. One or more, comma separated (will be interpreted as 'OR')."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. diet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?cuisine=british&diet=vegetarian",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "43",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "british",
+									"description": "The cuisine(s) of the recipes. One or more, comma separated (will be interpreted as 'OR')."
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"description": "The diet for which the recipes must be suitable."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. equipment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?equipment=blender",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "43",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "british",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"description": "The equipment required. Multiple values will be interpreted as 'or'. For example, value could be \"blender, frying pan, bowl\"."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.environment.unset(\"variable_key\");\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?cuisine=italian&author=Pizza",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"description": "The cuisine(s) of the recipes. One or more, comma separated (will be interpreted as 'OR')."
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"description": "The username of the recipe author."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. recipeBoxId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?recipeBoxId=2233",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"description": "The id of the recipe box to which the search should be limited to."
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. sort",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?minProtein=77&sort=protein",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77"
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"description": "The strategy to sort recipes by. "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. maxReadyTime",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=30",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "30",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. maxFat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxFat=99",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "30",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe.",
+									"disabled": true
+								},
+								{
+									"key": "maxFat",
+									"value": "99"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. minCaffeine",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?minCaffeine=55",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "30",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe.",
+									"disabled": true
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "55",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. maxCopper",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?minCaffeine=23&maxCopper=76",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "30",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe.",
+									"disabled": true
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have."
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. minFluoride",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?minFluoride=10",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "30",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe.",
+									"disabled": true
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. minVitaminA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&minVitaminA=47",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "47",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. minFiber",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&minVitaminA=30&minFiber=20",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have."
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. minIron",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&minIron=10",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "\tThe minimum amount of iron in milligrams the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. maxSugar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"results\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&maxSugar=25",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "The minimum amount of iron in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSugar",
+									"value": "25",
+									"description": "The maximum amount of sugar in grams the recipe can have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17. offset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&maxSugar=50&offset=0",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "The minimum amount of iron in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSugar",
+									"value": "50",
+									"description": "The maximum amount of sugar in grams the recipe can have."
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"description": "The number of results to skip (between 0 and 900)."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18. minZinc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&minZinc=15",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "The minimum amount of iron in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSugar",
+									"value": "50",
+									"description": "The maximum amount of sugar in grams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"description": "The number of results to skip (between 0 and 900).",
+									"disabled": true
+								},
+								{
+									"key": "minZinc",
+									"value": "15",
+									"description": "The minimum amount of zinc in milligrams the recipe must have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19. maxSodium",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+									"    console.log(response.json());\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&maxSodium=3",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "The minimum amount of iron in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSugar",
+									"value": "50",
+									"description": "The maximum amount of sugar in grams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"description": "The number of results to skip (between 0 and 900).",
+									"disabled": true
+								},
+								{
+									"key": "minZinc",
+									"value": "15",
+									"description": "The minimum amount of zinc in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSodium",
+									"value": "3",
+									"description": "The maximum amount of sodium in milligrams the recipe can have."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20. maxPhosphorus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 402, 202]);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlForGet}}?maxReadyTime=45&maxPhosphorus=90",
+							"host": [
+								"{{baseUrlForGet}}"
+							],
+							"query": [
+								{
+									"key": "minProtein",
+									"value": "77",
+									"disabled": true
+								},
+								{
+									"key": "cuisine",
+									"value": "italian",
+									"disabled": true
+								},
+								{
+									"key": "diet",
+									"value": "vegetarian",
+									"disabled": true
+								},
+								{
+									"key": "equipment",
+									"value": "blender",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "Pizza",
+									"disabled": true
+								},
+								{
+									"key": "recipeBoxId",
+									"value": "2233",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "protein",
+									"disabled": true
+								},
+								{
+									"key": "maxReadyTime",
+									"value": "45",
+									"description": "The maximum time in minutes it should take to prepare and cook the recipe."
+								},
+								{
+									"key": "maxFat",
+									"value": "99",
+									"disabled": true
+								},
+								{
+									"key": "minCaffeine",
+									"value": "23",
+									"description": "The minimum amount of caffeine in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxCopper",
+									"value": "76",
+									"description": "The maximum amount of copper in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "minFluoride",
+									"value": "10",
+									"description": "The minimum amount of fluoride in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minVitaminA",
+									"value": "30",
+									"description": "The minimum amount of Vitamin A in IU the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minFiber",
+									"value": "20",
+									"description": "The minimum amount of fiber in grams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "minIron",
+									"value": "10",
+									"description": "The minimum amount of iron in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSugar",
+									"value": "50",
+									"description": "The maximum amount of sugar in grams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "0",
+									"description": "The number of results to skip (between 0 and 900).",
+									"disabled": true
+								},
+								{
+									"key": "minZinc",
+									"value": "15",
+									"description": "The minimum amount of zinc in milligrams the recipe must have.",
+									"disabled": true
+								},
+								{
+									"key": "maxSodium",
+									"value": "3",
+									"description": "The maximum amount of sodium in milligrams the recipe can have.",
+									"disabled": true
+								},
+								{
+									"key": "maxPhosphorus",
+									"value": "90",
+									"description": "The maximum amount of phosphorus in milligrams the recipe can have."
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "9ee87024a882421daf1b4dcf9604955b",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "apiKey",
+						"type": "string"
+					},
+					{
+						"key": "in",
+						"value": "query",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Classify Cuisine (POST)",
+			"item": [
+				{
+					"name": "1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"American\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "burger",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"European\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Garlicky Kale",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"German\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "German",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"African\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "African Chicken Peanut Stew",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "sugar",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Nigerian Snail Stew",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"cuisine\");\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Berry Banana Breakfast Smoothie",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Creole\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Red Kidney Bean Jambalaya",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Broccoli and Chickpea Rice Salad",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"cuisine\");\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Slow Cooker Beef Stew",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"cuisine\");\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "9ee87024a882421daf1b4dcf9604955b",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "apiKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Red Lentil Soup with Chicken and Turnips",
+									"type": "text"
+								},
+								{
+									"key": "ingredientList",
+									"value": "tomatto",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrlForPost}}cuisine",
+							"host": [
+								"{{baseUrlForPost}}cuisine"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "9ee87024a882421daf1b4dcf9604955b",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "apiKey",
+						"type": "string"
+					},
+					{
+						"key": "in",
+						"value": "query",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "9ee87024a882421daf1b4dcf9604955b",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apiKey",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrlForGet",
+			"value": "https://api.spoonacular.com/recipes/complexSearch",
+			"type": "string"
+		},
+		{
+			"key": "baseUrlForPost",
+			"value": "https://api.spoonacular.com/recipes/",
+			"type": "string"
+		}
+	]
+}
